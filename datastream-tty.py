@@ -39,7 +39,7 @@ import signal, sys, MPR121
 try:
   sensor = MPR121.begin()
 except Exception as e:
-  print e
+  print (e)
   sys.exit(1)
 
 # handle ctrl+c gracefully
@@ -75,37 +75,37 @@ while True:
     # we need to turn them into ints first: 1 or 0
     # and then into string: "1" or "0" so we can display them
     data_array.append(str(int(sensor.get_touch_data(i))))
-  print "TOUCH: {0}".format(" ".join(data_array))
+  print ("TOUCH: {0}".format(" ".join(data_array)))
 
   # touch thresholds
   data_array = []
   for i in electrodes_range:
     data_array.append(str(touch_threshold))
-  print "TTHS: {0}".format(" ".join(data_array))
+  print ("TTHS: {0}".format(" ".join(data_array)))
 
   # release threshold
   data_array = []
   for i in electrodes_range:
     data_array.append(str(release_threshold))
-  print "RTHS: {0}".format(" ".join(data_array))
+  print ("RTHS: {0}".format(" ".join(data_array)))
 
   # filtered values
   data_array = []
   for i in electrodes_range:
     data_array.append(str(sensor.get_filtered_data(i)))
-  print "FDAT: {0}".format(" ".join(data_array))
+  print ("FDAT: {0}".format(" ".join(data_array)))
 
   # baseline values
   data_array = []
   for i in electrodes_range:
     data_array.append(str(sensor.get_baseline_data(i)))
-  print "BVAL: {0}".format(" ".join(data_array))
+  print ("BVAL: {0}".format(" ".join(data_array)))
 
   # value pairs
   data_array = []
   for i in electrodes_range:
     data_array.append(str(sensor.get_baseline_data(i) - sensor.get_filtered_data(i)))
-  print "DIFF: {0}".format(" ".join(data_array))
+  print ("DIFF: {0}".format(" ".join(data_array)))
 
   # a little delay so that we don't just sit chewing CPU cycles
   sleep(0.01)
